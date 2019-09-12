@@ -109,17 +109,21 @@ Izbor okoline je takođe prostor za potencijalno poboljšanje modela. Za suseda 
 Algoritam grube sile generiše sve moguće kombinacije rešenja i za svaku proverava kolika joj je vrednost, od kojih maksimalnu vraća kao rešenje. Budući da generiše sve kombinacije složenost algoritma je ogromna, pa čak i za male ulaze 15+ instanci izvršavanje ume da potraje, što je i očekivano.
 
 \subsection{Rezultati}
+
+
+
 Metoda lokalne pretrage daje iste rezultate kao i algoritam grube sile za proizvoljno generisane male test primere (broj lokacija je manji od 15). Test primeri su generisani na proizvoljan način, prvo se generiše n objekata u koordinatnom sistemu sa određenim ograničenjima potom se izračunava euklidsko rastojanje između njih i dodaju im se proizvoljne potražnje za svaki period. Lokalna pretraga se nad ovako malim test primerima pokazala kao optimalna.
 
-Lokalna pretraga je takođe testirana i nad većim ulazima.
+Lokalna pretraga je takođe testirana i nad većim ulazima. Iz grafika \ref{fig1} se može videti da vreme izvršavanja linearno raste sa povećavanjem broja čvorova uz poprilično veliku konstantu. Za ulaze preko 500 čvorova vreme izvršavanja dostiže i do minut. Moguće je optimizovati algoritam. Neki primeri optimizacije bi bili pametniji izbor suseda i izračunavanje ciljne funkcije inkrementalno, što bi zahtevalo dosta više memorije ali bi takođe i potencijalno znatno ubrzalo izvršavanje. Takođe implementacija u nekom drugom jeziku kao što je na primer C++ bi sigurno sledilo konstantom ubrzanju programa budući da je Python poznat po sporom izvršavanju.
 
 
-%\begin{figure}
-%	\centering
-%	\includegraphics[scale=0.5]{resources/execution_comparison.png}
-%	\caption{Poređenje efikasnosti}
-%	\label{fig1}
-%\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{resources/execution_time.png}
+	\caption{Poređenje efikasnosti}
+	\label{fig1}
+\end{figure}
+
 \section{Primene}
 Lokacijski problem maksimalnog pokrivanja je klasičan model koji je našao široku primenu u raznim oblastima nauke i privrede. Dinamička verzija ovog problema je relativno nova i još istraživanja je potrebno da bi došlo do njenih primena u većem broju situacija. Ovaj model nije neuobičajen u praksi i primenljiv je u mnogim slučajevima. Na primer može se koristiti za postavku policijskih patrola \cite{police}, premeštanje ambulanti \cite{ambulance} ili realokacija mesta za prvu pomoć kod prirodnih katastrofa.
 
