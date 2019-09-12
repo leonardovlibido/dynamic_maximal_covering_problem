@@ -39,6 +39,14 @@ Detaljan opis problema se može naći radu\cite{main_paper}.
 
 \section{Lokalna pretraga}
 
+Lokalna pretraga pripada grupi S-metaheuristika, koje se zasnivaju na poboljšavanju vrednosti jednog
+rešenja. Na početku algoritma se proizvoljno ili na neki drugi način generiše početno rešenje i izračuna vrednost njegove funkcije cilja. Vrednost najboljeg rešenja se najpre inicijalizuje na vrednost početnog. Zatim se
+algoritam ponavlja kroz nekoliko iteracija. U svakom koraku se razmatra rešenje u okolini trenutnog. U zavisnosti od toga kako se definiše okolina mogu se dobiti dobri ilii loši rezultati. Ukoliko je vrednost njegove funkcije cilja bolja od vrednosti funkcije cilja trenutnog rešenja, ažurira se trenutno
+rešenje. Takođe se, po potrebi, ažurira i vrednost najboljeg dostignutog rešenja. Algoritam se ponavlja
+dok nije ispunjen kriterijum zaustavljanja. Kriterijum zaustavljanja može biti, na primer, dostignut maksimalan broj iteracija, dostignut maksimalan broj ponavljanja najboljeg rešenja, ukupno vreme izvršavanja,
+itd. Lokalna pretraga se može prikazati sledećim pseudokodom
+
+
 Pseudo-kod algoritma:
 \begin{verbatim}
 Lokalna pretraga()
@@ -47,9 +55,18 @@ Ulaz:
 Izlaz:
 
 begin
+	Generisati početno rešenje s
+	Inicijalizovati vrednost najboljeg rešenja f* <= f(s)
+	dok nije ispunjen izabrani kriterijum zaustavljanja do
+		izabrati proizvoljno rešenje s' u okolini s koje je validno
+		ako f(s') < f(s) onda
+			s <= s'
+		ako f(s') < f* onda
+			f* <= f(s')	
 end
 \end{verbatim}
 
+U datoj verziji lokalne pretrage se vrši problem minimizacije, dok je u našem problemu potrebno maksimizovati ciljnu funkciju. To ćemo rešiti tako što ćemo prihvatati ona rešenja čija je vrednost funkcije cilja veća. Osnovna mana lokalne pretrage je u tome što ne nalazi globalna rešenja, i što kada uđe u lokanlni optimum iz njega ne može da izađe. Ovo se može poboljšati korišćenjem neke naprednije tehnike koja istražuje i rešenja koja nisu trenutno najbolja u nadi da se negde dalje krije bolje rešenje.
 
 \section{Implementacija}
 
@@ -62,7 +79,7 @@ Algoritam je implementiran u programskom jeziku Python.
 %	\label{fig1}
 %\end{figure}
 \section{Primene}
-Ima li primena za ovo?
+Lokacijski problem maksimalnog pokrivanja je klasičan model koji je našao široku primenu u raznim oblastima nauke i privrede. Dinamička verzija ovog problema je relativno nova i još istraživanja je potrebno da bi došlo do njenih primena u većem broju situacija. Ovaj model nije neuobičajen u praksi i primenljiv je u mnogim slučajevima. Na primer može se koristiti za postavku policijskih patrola \cite{police}, premeštanje ambulanti \cite{ambulance} ili realokacija mesta za prvu pomoć kod prirodnih katastrofa.
 
 \addcontentsline{toc}{section}{Literatura}
 \appendix
