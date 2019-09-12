@@ -35,7 +35,34 @@ Dinamički lokacijski problem maksimalnog pokrivanja\textit{(eng. Dynamic maxima
 
 \section{Postavka problema}
 
-Detaljan opis problema se može naći radu\cite{main_paper}.
+Postavka problema koja će biti objašnjena u nastavku je inspirisana radom\cite{main_paper}. Dobro poznati tip lokacijskih problema koje je izučavan od samog početka oblasti je lokacijski problem pokrivanja u kojem je cilj prekriti skup zahteva uz određeni cilj koji treba optimizovati. Verzija koja će biti razmatrana u ostatku rada je lokacijski problem maksimalnog pokrivanja u kojem je cilj pokriti maksimalan broj zahteva sa poznatim brojem objekata. Pored toga problem će biti još zakomplikovan uvođenjem više perioda.  U takvom problemu cilj je pronaći optimalnu lokaciju za p objekata u m različitih perioda.
+
+\subsection{Matematička definicija}
+
+Kako bismo predstavili DMCLP neophodno je postaviti neke pretpostavke. U daljem radu biće podrazumevano da se koristi diskretni tip problema. Takođe proizvoljni čvor se računa kao pokriven ako se objekat nalazi u dozvoljenoj udaljenosti od njega. Dodatno, skup zahtevnih čvorova je jedan skupu potencijalnih lokacija objekata. Svakom čvoru dodeljujemo vrednost u svakom periodu koja predstavlja težinu koju treba maksimizovati. Ovo možemo gledati kao potražnju datog čvora. Iako je poznat predodređen broj ukupnih objekata koje treba dodeliti ne postoji uslov o tome koliko objekata treba dodeliti u kom periodu.
+
+U nastavku će biti dat skup parametara i promenljivih koje treba optimizovati kao i funkcija koja se maksimizuje.
+\begin{description}
+\item[$i, I$]  - Indeks i skup čvorova potražnje
+\item[$j, J$]  - Indeks i skup čvorova potencijalnih objekata
+\item[$a_{it}$] - Potražnja u čvoru $i$ u periodu t
+\item[$d_{ij}$] - Najkraća distanca između čvora $i$ i objekta $j$
+\item[$S$] - Maksimalna distanca koja određuje da li je čvor pokriven 
+\item[$N_{i}$] - Skup čvorova takvih da postoji bar jedan objekat koji je na distanci manjoj od $S$ od njih
+\item[$p$] - broj objekata koje treba postaviti
+\item[$X_{jt}$] - Binarna promenjiva koja je jednaka 1 ako je objekat postavljen na čvoru $j$ u periodu $t$
+\item[$Y_{it}$] - Binarna promenjiva koja je jednaka 1 ako čvor $i$ u periodu $t$ je pokriven sa bar jednim objektom koji je postavljen na distanci manjoj od S u odnosu na čvor $i$.	
+\end{description}
+
+
+Za ovako definisane promenljive i parametre model glasi:
+$$max \sum_{t=1}^{T} \sum_{i=1}^{I} a_{it} Y_{it} $$
+
+Tako da važe uslovi:
+$$Y_{it} \leq \sum_{j \in N_{i}} Xjt, \;\;\;\;\; i \in I, t \in T  $$
+$$\sum_{t=1}^{T} \sum_{j=1}^{J} X_{jt} = p $$
+
+Funkcija cilja služi da maksimizuje ukupnu potražnju. Prvi uslov onemogućava pokrivenost čvora u čijoj S blizini se ne nalazi bar 1 objekat. Dok drugi uslov pokazuje da se p objekata raspoređuje tokom T perioda. 
 
 \section{Lokalna pretraga}
 
@@ -55,14 +82,14 @@ Ulaz:
 Izlaz:
 
 begin
-	Generisati početno rešenje s
-	Inicijalizovati vrednost najboljeg rešenja f* <= f(s)
-	dok nije ispunjen izabrani kriterijum zaustavljanja do
-		izabrati proizvoljno rešenje s' u okolini s koje je validno
-		ako f(s') < f(s) onda
-			s <= s'
-		ako f(s') < f* onda
-			f* <= f(s')	
+    Generisati početno rešenje s
+    Inicijalizovati vrednost najboljeg rešenja f* <= f(s)
+    dok nije ispunjen izabrani kriterijum zaustavljanja do
+        izabrati proizvoljno rešenje s' u okolini s koje je validno
+        ako f(s') < f(s) onda
+            s <= s'
+        ako f(s') < f* onda
+            f* <= f(s')	
 end
 \end{verbatim}
 
@@ -70,7 +97,10 @@ U datoj verziji lokalne pretrage se vrši problem minimizacije, dok je u našem 
 
 \section{Implementacija}
 
-Algoritam je implementiran u programskom jeziku Python. 
+Projekat je implementiran korišćenjem programskog jezika Python. 
+\subsection{Inicijalizacija}
+\subsection{Izbor suseda}
+\subsection{Rezultati}
 
 %\begin{figure}
 %	\centering
