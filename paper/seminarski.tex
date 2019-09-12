@@ -25,7 +25,7 @@
 \maketitle
 
 \abstract{
-Dinamički lokacijski problem maksimalnog pokrivanja\textit{(eng. Dynamic maximal covering location problem)} na velikoj količini podataka je interesantna oblast istraživanja. U ovom radu će biti opisan problem, metoda lokalne pretrage, i implementacija metode za dati problem u programskom jeziku Python.}
+Dinamički lokacijski problem maksimalnog pokrivanja\textit{(eng. Dynamic maximal covering location problem, DMCLP)} na velikoj količini podataka je interesantna oblast istraživanja. U ovom radu će biti opisan problem, metoda lokalne pretrage, i implementacija metode za dati problem u programskom jeziku Python.}
 
 \tableofcontents
 
@@ -97,10 +97,22 @@ U datoj verziji lokalne pretrage se vrši problem minimizacije, dok je u našem 
 
 \section{Implementacija}
 
-Projekat je implementiran korišćenjem programskog jezika Python. 
+Projekat je napisan korišćenjem programskog jezika Python. Implementirani su pristup grube sile i metoda lokalne pretrage nad datim problemom. Prvo će biti opisani neki od ključnih izbora kod implementacije lokalne pretrage, a dalje u nastavku je dato i kratko objašnjenje impelmentacije algoritma grube sile i poređenje njihovih brzina izvršavanja i rezultata.
+
 \subsection{Inicijalizacija}
+Inicijalizacija početnog rešenja je u potpunosti proizvoljna bez dodatnih uslova. Rešenje koje predstavlja koji od objekata je uključen u kom vremenskom periodu je predstavljeno kao jednodimenzioni niz. Potencijalni uslovi za bolje generisanje inicijalnog stanja moglo bi biti da se svakom čvoru dodeli objekat sa određenom verovatnoćom koja je srazmerna potencijalnom povećavanju potražnje njegovim dodavanjem. Problem je što iako ovo intuitivno ima smisla, ovako inicijalizovani podaci mogu slediti lošijim rešenjima.
+
 \subsection{Izbor suseda}
+Izbor okoline je takođe prostor za potencijalno poboljšanje modela. Za suseda su izabrana rešenja kod kojih se razlikuje 1 proizvoljno mesto objekta. Prvobitno je korišćena k-okolina kod kojih se lokacije k objekata razlikuju, ali algoritam znatno brže konvergira za mali broj k, tako da je u finalnom rešenju ostavljeno k=1. Takođe je razmatrana i zamena mesta ali u okviru 1 perioda i ovo je nešto što bi se moglo dodati kao potencijalni izbor suseda pored već datog rešenja.
+
+\subsection{Algoritam grube sile}
+Algoritam grube sile generiše sve moguće kombinacije rešenja i za svaku proverava kolika joj je vrednost, od kojih maksimalnu vraća kao rešenje. Budući da generiše sve kombinacije složenost algoritma je ogromna, pa čak i za male ulaze 15+ instanci izvršavanje ume da potraje, što je i očekivano.
+
 \subsection{Rezultati}
+Metoda lokalne pretrage daje iste rezultate kao i algoritam grube sile za proizvoljno generisane male test primere (broj lokacija je manji od 15). Test primeri su generisani na proizvoljan način, prvo se generiše n objekata u koordinatnom sistemu sa određenim ograničenjima potom se izračunava euklidsko rastojanje između njih i dodaju im se proizvoljne potražnje za svaki period. Lokalna pretraga se nad ovako malim test primerima pokazala kao optimalna.
+
+Lokalna pretraga je takođe testirana i nad većim ulazima.
+
 
 %\begin{figure}
 %	\centering
