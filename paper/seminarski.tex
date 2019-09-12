@@ -1,0 +1,72 @@
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[a4paper]{article}
+
+\usepackage{color}
+\usepackage{url}
+\usepackage[T2A]{fontenc} % enable Cyrillic fonts
+\usepackage[utf8]{inputenc} % make weird characters work
+\usepackage{graphicx}
+\usepackage{listings}
+
+\usepackage[english,serbian]{babel}
+
+\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
+
+%\newtheorem{primer}{Пример}[section] %ćirilični primer
+\newtheorem{primer}{Primer}[section]
+
+\begin{document}
+
+\title{Lokalna pretraga za dninamički lokacijski problem maksimalnog pokrivanja\\ \small{Seminarski rad u okviru kursa\\Naučno izračunavanje\\ Matematički fakultet}}
+
+\author{Rastko Đorđević, 1091/2017\\ rastko\_djordjevic@matf.bg.ac.rs}
+\maketitle
+
+\abstract{
+Dinamički lokacijski problem maksimalnog pokrivanja\textit{(eng. Dynamic maximal covering location problem)} na velikoj količini podataka je interesantna oblast istraživanja. U ovom radu će biti opisan problem, metoda lokalne pretrage, i implementacija metode za dati problem u programskom jeziku Python.}
+
+\tableofcontents
+
+\newpage
+
+
+
+\section{Postavka problema}
+
+Detaljan opis problema se može naći radu\cite{main_paper}.
+
+\section{Lokalna pretraga}
+
+Pseudo-kod algoritma:
+\begin{verbatim}
+Lokalna pretraga()
+Ulaz:
+
+Izlaz:
+
+begin
+end
+\end{verbatim}
+
+
+\section{Implementacija}
+
+Algoritam je implementiran u programskom jeziku Python. 
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[scale=0.5]{resources/execution_comparison.png}
+%	\caption{Poređenje efikasnosti}
+%	\label{fig1}
+%\end{figure}
+\section{Primene}
+Ima li primena za ovo?
+
+\addcontentsline{toc}{section}{Literatura}
+\appendix
+\bibliography{seminarski} 
+\bibliographystyle{plain}
+
+\end{document}
