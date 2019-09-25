@@ -8,6 +8,7 @@
 \usepackage[utf8]{inputenc} % make weird characters work
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{subfig}
 
 \usepackage[english,serbian]{babel}
 
@@ -114,14 +115,20 @@ Algoritam grube sile generiše sve moguće kombinacije rešenja i za svaku prove
 
 Metoda lokalne pretrage daje iste rezultate kao i algoritam grube sile za proizvoljno generisane male test primere (broj lokacija je manji od 15). Test primeri su generisani na proizvoljan način, prvo se generiše n objekata u koordinatnom sistemu sa određenim ograničenjima potom se izračunava euklidsko rastojanje između njih i dodaju im se proizvoljne potražnje za svaki period. Lokalna pretraga se nad ovako malim test primerima pokazala kao optimalna.
 
-Lokalna pretraga je takođe testirana i nad većim ulazima. Iz grafika \ref{fig1} se može videti da vreme izvršavanja linearno raste sa povećavanjem broja čvorova uz poprilično veliku konstantu. Za ulaze preko 500 čvorova vreme izvršavanja dostiže i do minut. Moguće je optimizovati algoritam. Neki primeri optimizacije bi bili pametniji izbor suseda i izračunavanje ciljne funkcije inkrementalno, što bi zahtevalo dosta više memorije ali bi takođe i potencijalno znatno ubrzalo izvršavanje. Takođe implementacija u nekom drugom jeziku kao što je na primer C++ bi sigurno sledilo konstantom ubrzanju programa budući da je Python poznat po sporom izvršavanju.
+Lokalna pretraga je takođe testirana i nad većim ulazima. Iz grafika \ref{fig1} se može videti da vreme izvršavanja linearno raste sa povećavanjem broja čvorova uz poprilično veliku konstantu. Za ulaze preko 500 čvorova vreme izvršavanja dostizalo je i do minut pre optimizacije izbora suseda i izračunavanja ciljne funkcije inkrementalno. Uz inkrementalno izračunavanje ciljne funkcije i las vegas pristupa izbora suseda, vreme izvršavanja se znatno poboljšalo kao što se može videti na slici \ref{fig1}. Nakon optimizacije algoritam se čak i za vrednosti od 4000 završava za manje od 20 sekunde. Ovi rezultati su dobijeni uz 15000 maksimalnih iteracija.
 
 
-\begin{figure}
+Takođe implementacija u nekom drugom jeziku kao što je na primer C++ bi sigurno sledilo konstantom ubrzanju programa budući da je Python poznat po sporom izvršavanju.
+
+Nakon optimz
+
+\begin{figure}%
 	\centering
-	\includegraphics[scale=0.5]{resources/execution_time.png}
-	\caption{Poređenje efikasnosti}
-	\label{fig1}
+	\subfloat[brzina izvršavanja pre optimizacije]{{\includegraphics[width=6cm]{resources/execution_time.png} }}%
+	\qquad
+	\subfloat[brzina izvršavanja nakon optimizacije]{{\includegraphics[width=6cm]{resources/execution_time_with_las_vegas_neighbour_gen_bigger_sample.png} }}%
+	\caption{Upoređivanje brzina izvršavanja algoritama pre i posle optimizacije}%
+	\label{fig1}%
 \end{figure}
 
 \section{Primene}
